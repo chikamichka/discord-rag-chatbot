@@ -1,0 +1,68 @@
+{
+  "123456789_rag_documentation_1770587096": {
+    "kb_id": "123456789_rag_documentation_1770587096",
+    "name": "RAG Documentation",
+    "owner_id": "123456789",
+    "owner_name": "TestUser",
+    "description": "Complete RAG system documentation",
+    "created_at": "2026-02-08T22:44:56.860540",
+    "updated_at": "2026-02-08T22:44:56.871555",
+    "status": "success",
+    "total_files": 3,
+    "processed_files": 3,
+    "failed_files": 0,
+    "total_chunks": 5,
+    "files": [
+      {
+        "filename": "rag_basics.txt",
+        "success": true,
+        "chunks": 2,
+        "error": null,
+        "file_size": 546,
+        "processing_time_seconds": 0.0
+      },
+      {
+        "filename": "implementation.txt",
+        "success": true,
+        "chunks": 2,
+        "error": null,
+        "file_size": 508,
+        "processing_time_seconds": 0.0
+      },
+      {
+        "filename": "best_practices.txt",
+        "success": true,
+        "chunks": 1,
+        "error": null,
+        "file_size": 472,
+        "processing_time_seconds": 0.0
+      }
+    ],
+    "errors": []
+  },
+  "1438941740022239234_math_1770587844": {
+    "kb_id": "1438941740022239234_math_1770587844",
+    "name": "math",
+    "owner_id": "1438941740022239234",
+    "owner_name": "imene68",
+    "description": "",
+    "created_at": "2026-02-08T22:57:24.173841",
+    "updated_at": "2026-02-08T22:57:24.597883",
+    "status": "success",
+    "total_files": 1,
+    "processed_files": 1,
+    "failed_files": 0,
+    "total_chunks": 41,
+    "files": [
+      {
+        "filename": "9-2-17-570.pdf",
+        "success": true,
+        "chunks": 41,
+        "error": null,
+        "file_size": 275758,
+        "processing_time_seconds": 0.15
+      }
+    ],
+    "errors": []
+  }
+}

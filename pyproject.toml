@@ -1,0 +1,51 @@
+[project]
+name = "discord-rag-bot"
+version = "0.2.0"
+description = "AI Bootcamp Discord RAG Bot - Production Ready"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    # Vector & Embeddings
+    "chromadb>=0.4.22",
+    "sentence-transformers>=2.3.1",
+    
+    # Text Processing
+    "langchain-text-splitters>=0.0.1",
+    
+    # Document Conversion
+    "pypdf>=4.0.0",
+    "python-docx>=1.1.0",
+    "openpyxl>=3.1.0",
+    
+    # Discord
+    "discord.py>=2.3.2",
+    "python-dotenv>=1.0.0",
+    
+    # LLM
+    "ollama>=0.1.0",
+    
+    # Database
+    "pymongo>=4.6.0",
+    
+    # Utilities
+    "numpy>=1.26.0",
+    "tqdm>=4.66.0",
+    "python-magic>=0.4.27",
+    "aiofiles>=23.2.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "ipython>=8.20.0",
+    "black>=24.0.0",
+    "ruff>=0.1.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# --- CONFIGURATION FOR SRC LAYOUT ---
+[tool.hatch.build.targets.wheel]
+packages = ["src/discord_rag_bot"]
