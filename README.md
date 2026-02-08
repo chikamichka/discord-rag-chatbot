@@ -1,111 +1,188 @@
 # 🤖 Discord RAG Bot - AI Bootcamp Project
 
-A production-ready Discord bot using Retrieval-Augmented Generation (RAG) to answer questions about the AI Bootcamp documentation.
+> **A production-ready Discord bot using Retrieval-Augmented Generation (RAG) to answer questions about course materials.**
 
-## 🎯 Project Overview
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![Discord.py](https://img.shields.io/badge/discord.py-2.3.2-blue.svg)](https://discordpy.readthedocs.io/)
 
-**Role:** Data Scientist  
-**Tech Stack:** 100% Local & Free (No Credit Cards!)
+---
 
-- **Vector DB:** ChromaDB (local, in-memory)
+## 🎯 Quick Overview
+
+Upload PDFs, DOCX, TXT, or MD files to Discord → Ask questions → Get accurate answers with source citations!
+
+**Tech Stack (100% Free & Local):**
 - **Embeddings:** SentenceTransformers (all-MiniLM-L6-v2)
-- **LLM:** Ollama (llama3.2:3b - runs locally)
-- **Bot Framework:** Discord.py
-- **Package Manager:** uv (fast Python package installer)
+- **Vector DB:** ChromaDB (persistent)
+- **LLM:** Ollama (llama3.2:3b)
+- **Bot:** Discord.py
+
+---
+
+## 🚀 Quick Start
+
+### 1. Install Ollama
+```bash
+brew install ollama
+ollama serve  # Keep this running
+ollama pull llama3.2:3b  # 3.2GB download
+```
+
+### 2. Setup Project
+```bash
+cd discord-rag-bot
+uv sync
+source .venv/bin/activate
+```
+
+### 3. Configure Discord Bot
+```bash
+# Create .env file
+echo "DISCORD_BOT_TOKEN=your_token_here" > .env
+```
+
+Get token from: https://discord.com/developers/applications
+- Create app → Bot → Enable MESSAGE CONTENT INTENT → Copy token
+
+### 4. Run
+```bash
+python -m discord_rag_bot.bot
+```
+
+---
+
+## 🎮 Commands
+
+| Command | Description | Example |
+|---------|-------------|---------|
+| `/upload` | Upload files to create KB | `/upload name:AI-Bootcamp file1:[PDF]` |
+| `/ask` | Ask a question | `/ask kb_name:AI-Bootcamp question:What is RAG?` |
+| `/list-kb` | List your KBs | `/list-kb` |
+| `/delete-kb` | Delete a KB | `/delete-kb kb_name:AI-Bootcamp` |
+| `/help` | Show help | `/help` |
+
+---
 
 ## 📁 Project Structure
 
 ```
-discord-rag-bot/
-├── src/
-│   └── discord_rag_bot/
-│       ├── __init__.py
-│       ├── bot.py                    # 🤖 Discord bot entry point
-│       │
-│       ├── core/                     # 🧠 Core RAG logic
-│       │   ├── __init__.py
-│       │   ├── rag_engine.py         # Main RAG orchestrator
-│       │   └── knowledge_base.py     # KB management (user KBs)
-│       │
-│       ├── processing/               # 📄 Document processing
-│       │   ├── __init__.py
-│       │   ├── converters.py         # PDF/DOCX/TXT → text
-│       │   ├── chunkers.py           # Smart text chunking
-│       │   └── validators.py         # File validation
-│       │
-│       ├── embeddings/               # 🔢 Vector embeddings
-│       │   ├── __init__.py
-│       │   └── embedding_service.py  # Embedding generation
-│       │
-│       ├── retrieval/                # 🔍 Search & retrieval
-│       │   ├── __init__.py
-│       │   └── retriever.py          # Vector search logic
-│       │
-│       ├── generation/               # 💬 Answer generation
-│       │   ├── __init__.py
-│       │   └── generator.py          # LLM integration (Ollama)
-│       │
-│       ├── storage/                  # 💾 Data persistence
-│       │   ├── __init__.py
-│       │   ├── vector_store.py       # ChromaDB manager
-│       │   └── memory_store.py       # MongoDB for chat history
-│       │
-│       ├── commands/                 # 🎮 Discord commands
-│       │   ├── __init__.py
-│       │   ├── upload.py             # Upload files command
-│       │   ├── ask.py                # Ask questions command
-│       │   ├── list_kb.py            # List knowledge bases
-│       │   └── delete_kb.py          # Delete knowledge base
-│       │
-│       └── utils/                    # 🛠️ Utilities
-│           ├── __init__.py
-│           ├── helpers.py            # Helper functions
-│           └── config.py             # Configuration
-│
-├── data/                             # 📁 Data storage
-│   ├── uploads/                      # Temporary file uploads
-│   ├── chromadb/                     # Vector DB persistence
-│   └── logs/                         # Application logs
-│
-├── tests/                            # 🧪 Tests
-│   └── ...
-│
-├── .env                              # 🔐 Environment variables
-├── pyproject.toml                    # 📦 Dependencies
-└── README.md                         # 📖 Documentation
+src/discord_rag_bot/
+├── bot.py                    # Main entry point
+├── core/                     # RAG engine & KB management
+├── processing/               # File conversion & chunking
+├── embeddings/               # SentenceTransformers
+├── storage/                  # ChromaDB
+├── retrieval/                # Vector search
+├── generation/               # Ollama LLM
+├── commands/                 # Discord commands
+└── utils/                    # Config & helpers
 ```
 
-## 🚀 Quick Start
+---
 
-### Prerequisites
+## 🎓 Assignment Requirements
 
-1. **Python 3.12+** installed
-2. **uv** package manager:
-   ```bash
-   curl -LsSf https://astral.sh/uv/install.sh | sh
-   ```
+### Phase 1: Preparation ✅
+- ✅ RAG architecture designed
+- ✅ Researched embeddings (SentenceTransformers, OpenAI, Cohere)
+- ✅ Researched vector stores (ChromaDB, FAISS, Pinecone)
+- ✅ Selected local LLM (Ollama)
 
-3. **Ollama** (local LLM):
-   ```bash
-   # macOS
-   brew install ollama
-   
-   # Start Ollama service
-   ollama serve
-   
-   # In another terminal, pull the model (3.2GB download)
-   ollama pull llama3.2:3b
-   ```
+### Phase 2: Development ✅
+- ✅ **Data Ingestion:** File conversion → chunking → embedding → storage
+- ✅ **Retrieval:** Query embedding → vector search → top-K
+- ✅ **Generation:** Context building → LLM prompting → grounded answers
+- ✅ **Bonus:** Multi-user, multi-KB, progress tracking, evaluation
 
-### Installation
+---
 
+## 🐛 Troubleshooting
+
+**Ollama not connecting:**
 ```bash
-# 1. Clone/enter project directory
-cd discord-rag-bot
-
-# 2. Install dependencies
-uv sync
-
-# 3. Activate virtual environment
-source .venv/bin/activate  # macOS/Linux
+ollama serve  # Terminal 1
+ollama list   # Terminal 2 - verify llama3.2:3b exists
 ```
+
+**Discord commands not showing:**
+- Enable MESSAGE CONTENT INTENT in Discord Developer Portal
+- Wait up to 1 hour for command sync
+- Try kicking/re-inviting bot
+
+**Import errors:**
+```bash
+uv sync --reinstall
+source .venv/bin/activate
+```
+
+---
+
+## 📊 How It Works
+
+```
+Upload File
+    ↓
+Convert (PDF/DOCX/TXT → text)
+    ↓  
+Chunk (500 chars, 50 overlap)
+    ↓
+Embed (384-dim vectors)
+    ↓
+Store (ChromaDB)
+    
+Ask Question
+    ↓
+Embed Query
+    ↓
+Search (top-3 similar chunks)
+    ↓
+Generate (Ollama + context)
+    ↓
+Answer + Citations
+```
+
+---
+
+## 💡 Key Features
+
+- ✅ Multi-knowledge base per user
+- ✅ Real-time progress tracking
+- ✅ Source citations on every answer
+- ✅ Error handling & validation
+- ✅ 100% local (no API costs)
+- ✅ Persistent storage
+
+---
+
+## 🎥 Demo
+
+1. Upload files: `/upload name:Test file1:[PDF]`
+2. Ask question: `/ask kb_name:Test question:What is this about?`
+3. Get answer with sources!
+
+---
+
+## ⚙️ Configuration
+
+Edit `.env`:
+```bash
+DISCORD_BOT_TOKEN=your_token
+OLLAMA_MODEL=llama3.2:3b
+EMBEDDING_MODEL=all-MiniLM-L6-v2
+CHUNK_SIZE=500
+CHUNK_OVERLAP=50
+TOP_K_RETRIEVAL=3
+MAX_FILE_SIZE_MB=10
+```
+
+---
+
+## 🤝 Credits
+
+- AI Bootcamp instructors
+- MongoDB RAG Workshop
+- Open source: SentenceTransformers, ChromaDB, Ollama, Discord.py
+
+---
+
+**Built for AI Bootcamp Data Scientist Track** 🚀
